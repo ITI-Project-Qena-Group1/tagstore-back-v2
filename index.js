@@ -6,6 +6,7 @@ const sellerRouter = require('./routes/seller');
 const userRouter = require('./routes/user');
 const productRouter = require('./routes/product');
 const orderRouter = require('./routes/order');
+const adminRouter = require('./routes/admin');
 
 const app = express();
 mongoose.connect(`mongodb://localhost:27017/tagstore`);
@@ -19,6 +20,7 @@ app.use('/seller', sellerRouter);
 app.use('/user', userRouter);
 app.use('/order', orderRouter);
 app.use('/product', productRouter);
+app.use('/admin', adminRouter);
 
 app.use("*", (req, res, next) => {
     res.status(404).send("Page is Not Found");

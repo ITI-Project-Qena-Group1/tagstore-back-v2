@@ -6,6 +6,10 @@ function makeOrder(newOrder){
     return orderModel.create(newOrder);
 }
 
+function changeOrder(id, newOrder){
+    return orderModel.update(id, newOrder)
+}
+
 function addOrderToUser(userId, _orderId){
     console.log(_orderId);
     // const oId = new ObjectId(_orderId);
@@ -22,9 +26,9 @@ function listOrders(){
     return  orderModel.find().populate("orderUser", "fullName");
 }
 
-function listOrderById(id){
+function listOrderByUserId(id){
     // return orderModel.findById(id);
-    return  orderModel.findById(id).populate("orderUser", "fullName");
+    return  orderModel.find({orderUser: id});
 }
 
-module.exports = { makeOrder, addOrderToUser, listOrders, listOrderById };
+module.exports = { makeOrder, changeOrder, addOrderToUser, listOrders, listOrderByUserId };

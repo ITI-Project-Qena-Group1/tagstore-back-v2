@@ -1,6 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const { makeOrder, addOrderToUser, listOrders, listOrderById } = require('../Controllers/order')
+const { makeOrder, addOrderToUser, listOrderByUserId } = require('../Controllers/order')
 const { auth } = require('../authentication/auth');
 const { userModel } = require('../models/user');
 const orderModel = require('../models/order');
@@ -60,19 +60,12 @@ router.post('/', auth, userRole, async (req, res) => {
 //     }
 // })
 
-router.get('/', auth, userRole, async (req, res) => {
-    try {    
-        const orders = await listOrders();
-        res.json(orders);
-    }catch (err) {
-        res.status(500).send(err.message)
-    }
-})
+
 
 router.get('/:id', auth, userRole, async (req, res) => {
     try {    
-        const id  = req.params.id;
-        const orders = await listOrderById(id);
+        const id  = req.userid;
+        const orders = await listOrderByUserId(id);
         res.json(orders);
 
     }catch (err) {

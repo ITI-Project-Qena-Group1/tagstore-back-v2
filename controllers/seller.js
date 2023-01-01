@@ -8,7 +8,7 @@ function getSellers(id){
     return sellerModel.find({_id: id}).populate("products");;
 }
 
-function getAllSellers(id){
+function getAllSellers(){
     return sellerModel.find().populate("products");;
 }
 
@@ -24,4 +24,4 @@ function getSellerById(id){
     return sellerModel.findById(id).populate("products");
 }
 
-module.exports = { createSeller, getSellers, updateSeller, deleteSeller, getSellerById };
+module.exports = { createSeller, getSellers, getAllSellers, updateSeller, deleteSeller, getSellerById };

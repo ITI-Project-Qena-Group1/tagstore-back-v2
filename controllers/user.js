@@ -9,7 +9,7 @@ function getUsers(_id){
     return userModel.find({id: _id}).populate("orders","products createdAt");
 }
 
-function getAllUsers(_id){
+function getAllUsers(){
     return userModel.find().populate("orders","products createdAt");
 }
 
@@ -25,4 +25,4 @@ function getUserById(id){
     return userModel.findById(id).populate("orders","products createdAt");
 }
 
-module.exports = { createUser, getUsers, updateUser, deleteUser, getUserById };
+module.exports = { createUser, getUsers, getAllUsers, updateUser, deleteUser, getUserById };
